@@ -1,0 +1,66 @@
+﻿@model Employee
+@{
+    ViewData["Title"] = "Employee Information";
+}
+
+<section class="container">
+    <div class="row text-center p-3">
+        <div class="col-md-8">
+            <form>
+                <table class="table table-responsive table-striped">
+                    <tr>
+                        <th colspan="2"><h4>Employee Information</h4></th>
+
+                    </tr>
+                    <tr>
+                        <td><b>First Name</b></td>
+                        <td><input type="text" class="form-control" readonly value="@Model.FirstName" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Last Name</b></td>
+                        <td><input type="text" class="form-control" readonly value="@Model.LastName" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Department</b></td>
+                        <td><input type="text" class="form-control" readonly value="@Model.Department" /></td>
+                    </tr>
+                    <tr>
+                        <td><b>Salary</b></td>
+                        <td>
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" readonly value="@Model.Salary" />
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">$</div>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        @switch (@Model.Confirmed)
+                        {
+                            case false:
+                                <td colspan="2"><input asp-controller="home" asp-action="Check" asp-route-id="@Model.Id" type="submit" id="check" value="Confirm Status" class="btn btn-outline-success btn-block" /></td>
+                                break;
+
+                            case true:
+                                <td colspan="2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="text-success">Employee status has been Confirmed!</h5>
+                                        </div>
+                                    </div>
+                                </td>
+                                break;
+
+                            default:
+
+                                break;
+                        }
+                    </tr>
+
+                </table>
+            </form>
+        </div>
+    </div>
+</section>
